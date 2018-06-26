@@ -321,10 +321,12 @@ describe('POST /users/login', () => {
           console.log("user.tokens", user.tokens);
           console.log("xa", res.headers['x-auth']);
           console.log("-- r", res);
+          const zuerstZ = true;
+          const leerWert = "xxx";
           let namejson = [{"name": "res", "json": res}];
           let savePath = "/home/micha/Schreibtisch/tests/jsonZuCsv";
-          savejsoncsv(namejson, savePath, false).then(()=>{
-            console.log("saved");
+          savejsoncsv(namejson, savePath, zuerstZ, leerWert).then(()=>{
+            console.log(`Saved ${name}.json, ${name}.csv in ${savePath}!`);
             
           });
           
