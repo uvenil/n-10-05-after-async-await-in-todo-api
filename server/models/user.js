@@ -45,8 +45,10 @@ UserSchema.methods.generateAuthToken = function () {
   var access = 'auth';
   var token = jwt.sign({_id: user._id.toHexString(), access}, process.env.JWT_SECRET).toString();
 
+  console.log("- user-gen ", user.tokens);
   user.tokens.concat({access, token});
-
+  console.log("- user-gen2 ", user.tokens);
+  // !!! hier: Token und user wird nicht in Mongo gespeichert
   return user.save().then(() => {
     return token;
   });

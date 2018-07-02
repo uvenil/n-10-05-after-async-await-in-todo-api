@@ -10,7 +10,7 @@ var {mongoose} = require('./db/mongoose');
 var {Todo} = require('./models/todo');
 var {User} = require('./models/user');
 var {authenticate} = require('./middleware/authenticate');
-const savejc = require('./savejc');
+const savej = require('./savej');
 
 
 var app = express();
@@ -129,26 +129,20 @@ app.get('/users/me', authenticate, (req, res) => {
 
 
 app.post('/users/login', (req, res) => {
+  console.log("login!!!");
+  
   var body = _.pick(req.body, ['email', 'password']);
   
+  // fs.writeJsonSync bricht request ab
+  // savej({ ...res }, "res-post1"); 
   User.findByCredentials(body.email, body.password).then((user) => {
+    // return res.header('x-auth', token).send(user);
     return user.generateAuthToken().then((token) => {
-      // const savejc = require('./savejc');
-      // savejc(req, "req-post");
-      // savejc(res, "res-post");
-      
-      console.log("token",token);
+      console.log("token",token); // token unterschiedlich
       console.log("+ user-post ",user);
-      savejc(res, "res-post1");
       res.header('x-auth', token).send(user);
-      savejc(res, "res-post2");
 
     });
-  })
-  .then((res) => {
-    console.log("Post1!!!");
-    savejc(res, "res-post3");
-    console.log("Post2!!!");
   })
   .catch((e) => {
     res.status(400).send();

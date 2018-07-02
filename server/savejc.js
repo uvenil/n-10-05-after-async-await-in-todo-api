@@ -6,7 +6,8 @@ module.exports = async (json = {"A": {"C":"1"}, "B": {"D":"2"}}, name = "jsoncsv
   const leerWert = "---";
   const savePath = "/home/micha/Schreibtisch/tests/jsonZuCsv";
   let namejson = [{ name: name, json: json }];
-  // hs(json);
+  console.log(name, ":: ", Object.keys(json).sort());
+  
   await savejsoncsv(namejson, savePath, zuerstZ, leerWert)
   console.log(`Saved "${name}.json/.csv" in ${savePath}!`);
   return;
