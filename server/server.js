@@ -128,7 +128,6 @@ app.get('/users/me', authenticate, (req, res) => {
 
 app.post('/users/login', (req, res) => {
   var body = _.pick(req.body, ['email', 'password']);
-  // hs(req);
   
   User.findByCredentials(body.email, body.password).then((user) => {
     return user.generateAuthToken().then((token) => {
@@ -137,8 +136,10 @@ app.post('/users/login', (req, res) => {
       // savejc(res, "res-post");
       
       console.log("token",token);
-      console.log(user);
+      console.log("+ user-post ",user);
+      savejc(res, "res-post1");
       res.header('x-auth', token).send(user);
+      savejc(res, "res-post2");
 
     });
   }).catch((e) => {

@@ -316,16 +316,13 @@ describe('POST /users/login', () => {
         expect(res.headers['x-auth']).toExist();
       })
       .end((err, res) => {
+        savejc(res, "res-test2");
         if (err) {
           return done(err);
         }
         User.findById(users[1]._id).then((user) => {
-          console.log("user.email", user.email);
-          // console.log("users[1].tokens[0].token", users[1].tokens[0].token);
-          // console.log("user.tokens[0]", user.tokens[0]);
-          // console.log("res.headers['x-auth'] ", res.headers['x-auth']);
-          // console.log("res.header['x-auth'] ", res.header['x-auth']);
-          // console.log("-- r", res);
+          savejc(res, "res-test1");
+          console.log("- user-test ", user);
           expect(user.tokens[0]).toInclude({
             access: 'auth',
             // !!! hier: warum stimmt token nicht überein?
