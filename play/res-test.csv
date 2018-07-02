@@ -1,0 +1,13 @@
+Attr2 \ Attr1,req,header,status,text
+Werte,,,,{"_id":"5b3907927681181aded2cb74"-"email":"jen@example.com"}
+method,POST,xxx,xxx,xxx
+url,http://127.0.0.1:33355/users/login,xxx,xxx,xxx
+data,{"email":"jen@example.com"-"password":"userTwoPass"},xxx,xxx,xxx
+headers,{"user-agent":"node-superagent/2.3.0"-"content-type":"application/json"},xxx,xxx,xxx
+x-powered-by,xxx,Express,xxx,xxx
+x-auth,xxx,eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjM5MDc5Mjc2ODExODFhZGVkMmNiNzQiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTMwNDY0MTUyfQ.Y-nO4P7NdBTTxiyVQHLi6Om8xPvSgEN1JkSZLkXcrwc,xxx,xxx
+content-type,xxx,application/json; charset=utf-8,xxx,xxx
+content-length,xxx,60,xxx,xxx
+etag,xxx,W/"3c-6PDT19RQeD7kRKJB+f9tICAe1Oo",xxx,xxx
+date,xxx,Sun- 01 Jul 2018 16:55:52 GMT,xxx,xxx
+connection,xxx,close,xxx,xxx

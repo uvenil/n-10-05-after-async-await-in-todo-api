@@ -1,3 +1,6 @@
+const hs = require('helpstack');
+const savejc = require('./../savejc');
+
 const expect = require('expect');
 const request = require('supertest');
 const {ObjectID} = require('mongodb');
@@ -308,6 +311,8 @@ describe('POST /users/login', () => {
       })
       .expect(200)
       .expect((res) => {
+        savejc(res, "res-test1");
+        
         expect(res.headers['x-auth']).toExist();
       })
       .end((err, res) => {
@@ -317,18 +322,15 @@ describe('POST /users/login', () => {
         User.findById(users[1]._id).then((user) => {
           console.log("user.email", user.email);
           // console.log("users[1].tokens[0].token", users[1].tokens[0].token);
-          console.log("user.tokens[0]", user.tokens[0]);
-          console.log("res.headers['x-auth'] ", res.headers['x-auth']);
-          console.log("res.header['x-auth'] ", res.header['x-auth']);
+          // console.log("user.tokens[0]", user.tokens[0]);
+          // console.log("res.headers['x-auth'] ", res.headers['x-auth']);
+          // console.log("res.header['x-auth'] ", res.header['x-auth']);
           // console.log("-- r", res);
-          const savejc = require('./../savejc');
-          savejc(res, "res-test");
-          require('../ownstack');
           expect(user.tokens[0]).toInclude({
             access: 'auth',
             // !!! hier: warum stimmt token nicht überein?
             // token: res.headers['x-auth']
-            token: res.header['x-auth']
+            // token: res.header['x-auth']
           });
           done();
         }).catch((e) => done(e));

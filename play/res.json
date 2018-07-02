@@ -1,0 +1,25 @@
+{
+  "req": {
+    "method": "POST",
+    "url": "http://127.0.0.1:45799/users/login",
+    "data": {
+      "email": "jen@example.com",
+      "password": "userTwoPass"
+    },
+    "headers": {
+      "user-agent": "node-superagent/2.3.0",
+      "content-type": "application/json"
+    }
+  },
+  "header": {
+    "x-powered-by": "Express",
+    "x-auth": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjM4ZmQxYmI2ZDI3MzExZWY5YTI5ZGMiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTMwNDYxNDcyfQ.TkI921kJzw5G_GLlLhgD_coKh142wNI75FebLfdSt_c",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "60",
+    "etag": "W/\"3c-Dda/uViLLIM4VJFjh5SlQq9X9+E\"",
+    "date": "Sun, 01 Jul 2018 16:11:12 GMT",
+    "connection": "close"
+  },
+  "status": 200,
+  "text": "{\"_id\":\"5b38fd1bb6d27311ef9a29dc\",\"email\":\"jen@example.com\"}"
+}

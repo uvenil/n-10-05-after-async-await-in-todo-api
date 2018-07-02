@@ -1,6 +1,7 @@
 require('./config/config');
 
 const _ = require('lodash');
+const hs = require('helpstack');
 const express = require('express');
 const bodyParser = require('body-parser');
 const {ObjectID} = require('mongodb');
@@ -127,14 +128,18 @@ app.get('/users/me', authenticate, (req, res) => {
 
 app.post('/users/login', (req, res) => {
   var body = _.pick(req.body, ['email', 'password']);
-
+  // hs(req);
+  
   User.findByCredentials(body.email, body.password).then((user) => {
     return user.generateAuthToken().then((token) => {
-      const savejc = require('./savejc');
+      // const savejc = require('./savejc');
       // savejc(req, "req-post");
-      savejc(res, "res-post");
-
+      // savejc(res, "res-post");
+      
+      console.log("token",token);
+      console.log(user);
       res.header('x-auth', token).send(user);
+
     });
   }).catch((e) => {
     res.status(400).send();
