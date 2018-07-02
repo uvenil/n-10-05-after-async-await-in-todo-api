@@ -311,17 +311,21 @@ describe('POST /users/login', () => {
       })
       .expect(200)
       .expect((res) => {
+        console.log("Test1!!!");
+        
         savejc(res, "res-test1");
+        console.log("Test2!!!");
         
         expect(res.headers['x-auth']).toExist();
       })
       .end((err, res) => {
+        console.log("Test3!!!");
         savejc(res, "res-test2");
         if (err) {
           return done(err);
         }
         User.findById(users[1]._id).then((user) => {
-          savejc(res, "res-test1");
+          savejc(res, "res-test3");
           console.log("- user-test ", user);
           expect(user.tokens[0]).toInclude({
             access: 'auth',

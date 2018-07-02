@@ -10,6 +10,8 @@ var {mongoose} = require('./db/mongoose');
 var {Todo} = require('./models/todo');
 var {User} = require('./models/user');
 var {authenticate} = require('./middleware/authenticate');
+const savejc = require('./savejc');
+
 
 var app = express();
 const port = process.env.PORT;
@@ -142,7 +144,13 @@ app.post('/users/login', (req, res) => {
       savejc(res, "res-post2");
 
     });
-  }).catch((e) => {
+  })
+  .then((res) => {
+    console.log("Post1!!!");
+    savejc(res, "res-post3");
+    console.log("Post2!!!");
+  })
+  .catch((e) => {
     res.status(400).send();
   });
 });
