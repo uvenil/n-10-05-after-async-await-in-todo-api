@@ -45,11 +45,14 @@ UserSchema.methods.generateAuthToken = function () {
   var access = 'auth';
   var token = jwt.sign({_id: user._id.toHexString(), access}, process.env.JWT_SECRET).toString();
 
+  console.log("user.tokens1: ", user.tokens);
   user.tokens.push({access, token});
 
+  console.log("user.tokens2: ", user.tokens);
+  
   return user.save().then(() => {
     return token;
-  });
+  }).catch(e => console.log("Error = ", e));
 };
 
 UserSchema.methods.removeToken = function (token) {
