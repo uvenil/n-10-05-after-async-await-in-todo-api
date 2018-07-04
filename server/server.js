@@ -132,6 +132,8 @@ app.post('/users/login', async (req, res) => {
     // const token = "abcd";
     const token = await user.generateAuthToken();
     console.log("----- token = ", token);
+    console.log("user t", user.tokens);
+    
     
     res.header('x-auth', token).send(user);
   } catch (e) {
