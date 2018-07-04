@@ -113,8 +113,8 @@ app.post('/users', async (req, res) => {
     const body = _.pick(req.body, ['email', 'password']);
     const user = new User(body);
     await user.save();
-    const token = "abcd";
-    // const token = await user.generateAuthToken();
+    const token = await user.generateAuthToken();
+
     res.header('x-auth', token).send(user);
   } catch (e) {
     res.status(400).send(e);
@@ -129,12 +129,7 @@ app.post('/users/login', async (req, res) => {
   try {
     const body = _.pick(req.body, ['email', 'password']);
     const user = await User.findByCredentials(body.email, body.password);
-    // const token = "abcd";
     const token = await user.generateAuthToken();
-    console.log("----- token = ", token);
-    console.log("user t", user.tokens);
-    
-    
     res.header('x-auth', token).send(user);
   } catch (e) {
     res.status(400).send();
