@@ -108,7 +108,7 @@ app.patch('/todos/:id', authenticate, (req, res) => {
 });
 
 // POST /users
-app.post('/users', async (req, res) => {
+app.post('/users', async (req, res) => {  // signin
   try {
     const body = _.pick(req.body, ['email', 'password']);
     const user = new User(body);
@@ -121,11 +121,11 @@ app.post('/users', async (req, res) => {
   }
 });
 
-app.get('/users/me', authenticate, (req, res) => {
+app.get('/users/me', authenticate, (req, res) => {  // loggedin
   res.send(req.user);
 });
 
-app.post('/users/login', async (req, res) => {
+app.post('/users/login', async (req, res) => {  // login
   try {
     const body = _.pick(req.body, ['email', 'password']);
     const user = await User.findByCredentials(body.email, body.password);
@@ -136,7 +136,7 @@ app.post('/users/login', async (req, res) => {
   }
 });
 
-app.delete('/users/me/token', authenticate, async (req, res) => {
+app.delete('/users/me/token', authenticate, async (req, res) => { // logout
   try {
     await req.user.removeToken(req.token);
     res.status(200).send();
