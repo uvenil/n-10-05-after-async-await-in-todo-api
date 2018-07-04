@@ -40,14 +40,17 @@ UserSchema.methods.toJSON = function () {
   return _.pick(userObject, ['_id', 'email']);
 };
 
-UserSchema.methods.generateAuthToken = function () {
+UserSchema.methods.generateAuthToken = async function () {
   var user = this;
   var access = 'auth';
   var token = jwt.sign({_id: user._id.toHexString(), access}, process.env.JWT_SECRET).toString();
   user.tokens = [{access, token}];
-  return user.save().then(() => {
-    return token;
-  }).catch(e => console.log("Error = ", e));
+  try {
+    await user.save()
+  } catch (e) {
+    console.log("Error = ", e);
+  }
+  return token;
 };
 
 UserSchema.methods.removeToken = function (token) {
